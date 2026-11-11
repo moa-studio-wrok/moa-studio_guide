@@ -39,6 +39,8 @@ body{font-family:'Noto Sans KR','Malgun Gothic',sans-serif;background:var(--bg);
 .part-head h2{font-size:clamp(20px,4vw,25px);font-weight:700}
 .part-desc{color:var(--sub);font-size:15px;margin-bottom:22px;padding-left:2px}
 
+.go-btn{display:inline-block;margin:-8px 0 22px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;padding:10px 20px;border-radius:10px;transition:.15s}
+.go-btn:hover{background:#1748cc}
 /* Step */
 .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:18px}
 .step-title{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
@@ -122,10 +124,11 @@ td:nth-child(n+2){white-space:nowrap}
   <section class="part" id="p1">
     <div class="part-head"><span class="part-no">STEP 1</span><h2>스냅위젯에서 위젯 만들기</h2></div>
     <p class="part-desc">스냅위젯(snapwidget.com)에 로그인한 뒤 새 위젯을 생성합니다.</p>
+    <a class="go-btn" href="https://snapwidget.com" target="_blank" rel="noopener">스냅위젯 바로가기 ↗</a>
 
     <div class="step">
       <div class="step-title"><span class="num">1</span><h3>홈 화면에서 [New Widget] 클릭</h3></div>
-      <p>스냅위젯에 로그인하면 보이는 <span class="point">Home</span> 화면 오른쪽 위의 파란색 <span class="point">+ New Widget</span> 버튼을 눌러주세요.</p>
+      <p><a href="https://snapwidget.com" target="_blank" rel="noopener" class="point">스냅위젯(snapwidget.com)</a>에 로그인하면 보이는<span class="point">Home</span> 화면 오른쪽 위의 파란색 <span class="point">+ New Widget</span> 버튼을 눌러주세요.</p>
       <figure><img src="images/1.png" alt="스냅위젯 홈 화면의 New Widget 버튼"></figure>
       <div class="note tip">화면 중간의 "계정에 다시 로그인하세요" 같은 안내(Sign in again)는 기존 위젯에 관한 알림이므로, 새로 만드는 것과는 무관합니다.</div>
     </div>
