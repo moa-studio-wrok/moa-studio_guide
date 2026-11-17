@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>바디씨 상세페이지 상단 관리 가이드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root { --bg:#f5f6fa; --card:#fff; --ink:#1a2233; --sub:#5b6577; --line:#e3e6ee; --accent:#1f5cff; --accent-soft:#eaf0ff; --warn:#b45309; --warn-bg:#fff6e6; --warn-line:#f6d9a3; --ok:#0f7a4d; --ok-bg:#e9f8f0; --red:#e5322d; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:"Noto Sans KR","Malgun Gothic",sans-serif; background:var(--bg); color:var(--ink); line-height:1.7; font-size:16px; -webkit-font-smoothing:antialiased; }
+.wrap { max-width:900px; margin:0 auto; padding:0 20px 80px; }
+.hero { background:linear-gradient(135deg,#1a2233 0%,#243b7a 100%); color:#fff; padding:56px 20px 48px; text-align:center; }
+.hero small { display:inline-block; background:rgba(255,255,255,.14); padding:4px 14px; border-radius:99px; font-size:13px; margin-bottom:16px; letter-spacing:.02em; }
+.hero h1 { font-size:clamp(24px,5vw,34px); font-weight:700; line-height:1.3; margin-bottom:12px; }
+.hero p { color:#c9d3ef; font-size:15px; max-width:560px; margin:0 auto; }
+.overview { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px; margin:-28px 0 40px; box-shadow:0 8px 24px rgba(26,34,51,.08); position:relative; }
+.overview h2 { font-size:15px; color:var(--sub); font-weight:500; margin-bottom:14px; }
+.flow { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; list-style:none; }
+.flow a { display:block; text-decoration:none; color:var(--ink); background:var(--bg); border-radius:12px; padding:14px 12px; height:100%; transition:.15s; border:1px solid transparent; }
+.flow a:hover { background:var(--accent-soft); border-color:var(--accent); }
+.flow b { display:block; color:var(--accent); font-size:12px; margin-bottom:2px; }
+.flow span { font-size:14px; font-weight:500; line-height:1.4; display:block; }
+@media (max-width:700px){ .flow { grid-template-columns:1fr 1fr; } }
+.part { margin-top:56px; }
+.part-head { display:flex; align-items:center; gap:14px; margin-bottom:8px; }
+.part-no { flex:0 0 auto; background:var(--accent); color:#fff; font-weight:700; font-size:13px; padding:5px 12px; border-radius:8px; }
+.part-head h2 { font-size:clamp(20px,4vw,25px); font-weight:700; }
+.part-desc { color:var(--sub); font-size:15px; margin-bottom:22px; padding-left:2px; }
+.step { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px; margin-bottom:18px; }
+.step-title { display:flex; gap:12px; align-items:flex-start; margin-bottom:14px; }
+.num { flex:0 0 auto; width:32px; height:32px; border-radius:50%; background:var(--ink); color:#fff; font-weight:700; font-size:15px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+.step-title h3 { font-size:18px; font-weight:700; line-height:1.5; }
+.step p, .step li { font-size:15.5px; color:#2c3548; }
+.step ul { padding-left:0; list-style:none; margin-top:6px; }
+.step li { padding-left:18px; position:relative; margin-bottom:4px; }
+.step li::before { content:""; position:absolute; left:4px; top:.8em; width:5px; height:5px; border-radius:50%; background:var(--accent); }
+.point { color:var(--accent); font-weight:700; }
+.red { color:var(--red); font-weight:700; }
+figure { margin-top:16px; text-align:center; }
+figure img { max-width:100%; height:auto; border:1px solid var(--line); border-radius:10px; cursor:zoom-in; background:#fff; display:block; margin-left:auto; margin-right:auto; }
+figure.narrow img { max-width:460px; width:100%; }
+figure.mid img { max-width:620px; width:100%; }
+figure.stack img + img { margin-top:6px; }
+figcaption { font-size:13px; color:var(--sub); margin-top:6px; }
+.note { border-radius:12px; padding:14px 16px; margin-top:16px; font-size:14.5px; display:flex; gap:10px; }
+.note::before { flex:0 0 auto; font-weight:700; }
+.note.tip { background:var(--accent-soft); color:#173a99; }
+.note.tip::before { content:"TIP"; }
+.note.warn { background:var(--warn-bg); border:1px solid var(--warn-line); color:var(--warn); }
+.note.warn::before { content:"주의"; }
+.note.ok { background:var(--ok-bg); color:var(--ok); }
+.note.ok::before { content:"확인"; }
+table { width:100%; border-collapse:collapse; margin-top:14px; font-size:14.5px; border-radius:10px; overflow:hidden; border:1px solid var(--line); }
+th, td { padding:10px 14px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+th { background:#f0f2f8; font-weight:500; color:var(--sub); font-size:13px; }
+tr:last-child td { border-bottom:0; }
+kbd { background:#eef0f5; border:1px solid #cfd4e0; border-bottom-width:2px; border-radius:5px; padding:1px 7px; font-size:13px; font-family:inherit; }
+code { background:#eef0f5; border-radius:5px; padding:1px 6px; font-size:13.5px; }
+.foot { margin-top:56px; text-align:center; color:var(--sub); font-size:14px; }
+#lb { position:fixed; inset:0; background:rgba(10,14,24,.88); display:none; align-items:center; justify-content:center; z-index:99; padding:20px; cursor:zoom-out; overflow:auto; }
+#lb.on { display:flex; }
+#lb img { max-width:100%; max-height:100%; border-radius:8px; background:#fff; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <small>모아스튜디오 · 바디씨 운영</small>
+  <h1>상품 상세페이지 상단 관리 가이드</h1>
+  <p>무이자 · 무상 AS · 쿠폰 받기 버튼 · 공식판매처 배너를 상품별로 설정하고 수정하는 방법을 순서대로 안내드립니다.</p>
+</header>
+
+<main class="wrap">
+
+<nav class="overview" aria-label="전체 순서">
+  <h2>전체 진행 순서</h2>
+  <ol class="flow">
+    <li><a href="#p1"><b>STEP 1</b><span>화면 구성 한눈에 보기</span></a></li>
+    <li><a href="#p2"><b>STEP 2</b><span>상품별 추가항목 입력하기</span></a></li>
+    <li><a href="#p3"><b>STEP 3</b><span>항목별 사용법</span></a></li>
+    <li><a href="#p4"><b>STEP 4</b><span>공식판매처 배너 · 문제 해결</span></a></li>
+  </ol>
+  <div class="note tip"><div>적용 스킨은 <b>바디랩 반응형 [상세페이지 UI개선]</b>입니다. PC와 모바일은 같은 입력값을 함께 사용합니다(반응형).<br>
+  적용된 상품 보기 : <a href="https://naeun7374.cafe24.com/skin-skin32/product/%EB%B0%94%EB%94%94%EC%94%A8-%ED%95%B8%EB%94%94%ED%94%84-%EB%A7%88%EC%82%AC%EC%A7%80-%EB%B2%A0%EA%B0%9C/295/category/1/display/2/?icid=MAIN.product_listmain_1" target="_blank" rel="noopener">바디씨 핸디프 마사지 베개 (상품번호 295)</a></div></div>
+</nav>
+
+<!-- ============ STEP 1 ============ -->
+<section class="part" id="p1">
+  <div class="part-head"><span class="part-no">STEP 1</span><h2>화면 구성 한눈에 보기</h2></div>
+  <p class="part-desc">상세페이지 상단에서 관리할 수 있는 영역과, 각 영역을 어디서 관리하는지 정리했습니다.</p>
+
+  <div class="step">
+    <div class="step-title"><span class="num">1</span><h3>PC 화면</h3></div>
+    <p>가격 아래에 <b>쿠폰 받기 버튼 → 무이자 · 무상 AS 박스 → 카톡 배너</b> 순서로 표시됩니다.</p>
+    <figure class="mid"><img src="img/pc_top.png" alt="PC 상세페이지 상단 화면"><figcaption>PC 상세페이지 상단</figcaption></figure>
+  </div>
+
+  <div class="step">
+    <div class="step-title"><span class="num">2</span><h3>모바일 화면</h3></div>
+    <p>PC와 같은 순서이고, 카톡 배너도 무이자 박스 바로 아래에 항상 보입니다.</p>
+    <figure class="narrow"><img src="img/mo_top.png" alt="모바일 상세페이지 상단 화면"><figcaption>모바일 상세페이지 상단</figcaption></figure>
+  </div>
+
+  <div class="step">
+    <div class="step-title"><span class="num">3</span><h3>영역별 관리 방법</h3></div>
+    <table>
+      <thead><tr><th style="width:22%">영역</th><th style="width:34%">관리 방법</th><th>설명</th></tr></thead>
+      <tbody>
+        <tr><td><b>무이자 안내</b></td><td>자동 계산 + 상품별 추가항목</td><td>판매가 기준 6개월 금액이 자동으로 들어갑니다. 노출 ON/OFF와 앞 문구만 상품별로 바꿀 수 있습니다.</td></tr>
+        <tr><td><b>무상 AS 안내</b></td><td>상품별 추가항목</td><td>문구를 입력한 상품에만 노출됩니다. <span class="point">비워두면 노출되지 않습니다.</span></td></tr>
+        <tr><td><b>쿠폰 받기 버튼</b></td><td>상품별 추가항목</td><td>버튼 문구와 배경색을 상품별로 바꿀 수 있습니다.</td></tr>
+        <tr><td><b>카톡 배너</b></td><td>배너매니저 <code>detail-benefit</code></td><td>전 상품 공통입니다. 문구·링크는 배너매니저에서 수정합니다.</td></tr>
+        <tr><td><b>공식판매처 배너</b></td><td>배너매니저 <code>detail-banner</code></td><td>상품 이미지 아래에 전 상품 공통으로 노출됩니다. (STEP 4 참고)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ STEP 2 ============ -->
+<section class="part" id="p2">
+  <div class="part-head"><span class="part-no">STEP 2</span><h2>상품별 추가항목 입력하기</h2></div>
+  <p class="part-desc">상품 수정 화면의 <b>추가항목</b>에 입력한 값이 상세페이지에 그대로 반영됩니다. 입력하지 않으면 기본 문구·색상으로 나옵니다.</p>
+
+  <div class="step">
+    <div class="step-title"><span class="num">4</span><h3>상품 수정 &gt; 기본정보 탭에서 입력</h3></div>
+    <p>관리자 <span class="point">상품 &gt; 상품 수정</span> 화면에서 <span class="point">[기본정보]</span> 탭을 열고, 아래쪽 <span class="point">추가항목</span>에서 입력합니다. (빨간 박스)</p>
+    <figure class="mid"><img src="img/admin_texts.png" alt="상품 수정 기본정보 탭의 추가항목"><figcaption>캡처의 입력값은 테스트 값입니다.</figcaption></figure>
+  </div>
+
+  <div class="step">
+    <div class="step-title"><span class="num">5</span><h3>입력 항목 한눈에 보기</h3></div>
+    <table>
+      <thead><tr><th style="width:22%">항목</th><th style="width:24%">입력 예시</th><th>적용 위치</th><th style="width:20%">비우면</th></tr></thead>
+      <tbody>
+        <tr><td><b>무상 AS 라벨</b></td><td><code>무상AS</code></td><td>보라색 배지 글자</td><td>기본 "무상 AS"</td></tr>
+        <tr><td><b>무상 AS 문구</b></td><td><code>공식 판매처 AS 365일</code></td><td>배지 옆 안내 문구</td><td><span class="red">무상 AS 줄 미노출</span></td></tr>
+        <tr><td><b>무이자 노출</b></td><td><code>N</code></td><td>무이자 줄을 숨길 때만 입력</td><td>노출</td></tr>
+        <tr><td><b>무이자 앞 문구</b></td><td><code>카드</code></td><td><b>카드</b> 월 26,616원 (6개월 기준)의 앞부분</td><td>기본 "카드"</td></tr>
+        <tr><td><b>쿠폰받기 버튼 문구</b></td><td><code>쿠폰 받기</code></td><td>쿠폰 받기 버튼 글자</td><td>기본 "쿠폰 받기"</td></tr>
+        <tr><td><b>쿠폰받기 버튼 색상</b></td><td><code>#6138b5</code></td><td>쿠폰 받기 버튼 배경색</td><td>기본 보라색</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title"><span class="num">6</span><h3>저장하고 확인하기</h3></div>
+    <ul>
+      <li>입력 후 화면 아래 <span class="point">[상품수정]</span> 버튼을 눌러 저장합니다.</li>
+      <li>상품 페이지에서 <kbd>Ctrl</kbd> + <kbd>F5</kbd>로 새로고침해 확인합니다.</li>
+      <li>바로 반영되지 않으면 1~2분 뒤에 다시 확인해주세요.</li>
+    </ul>
+    <div class="note warn"><div>추가항목은 <b>삭제하거나 순서를 바꾸지 마세요.</b> 스킨이 항목 번호로 연결되어 있어, 바뀌면 문구가 엉뚱한 곳에 나오거나 노출되지 않을 수 있습니다.</div></div>
+  </div>
+</section>
+
+<!-- ============ STEP 3 ============ -->
+<section class="part" id="p3">
+  <div class="part-head"><span class="part-no">STEP 3</span><h2>항목별 사용법</h2></div>
+  <p class="part-desc">영역마다 자주 쓰는 설정을 정리했습니다.</p>
+
+  <div class="step">
+    <div class="step-title"><span class="num">7</span><h3>무이자 안내</h3></div>
+    <ul>
+      <li><b>금액은 자동입니다.</b> 화면에 보이는 판매가(쿠폰가가 있으면 쿠폰가)를 6으로 나눈 금액이 들어갑니다. 판매가를 수정하면 금액도 같이 바뀝니다.</li>
+      <li><b>숨길 때</b> : <span class="point">무이자 노출</span> 칸에 <code>N</code>을 입력하고 저장합니다. 다시 보이게 하려면 칸을 <b>비우고</b> 저장합니다.</li>
+      <li><b>앞 문구 바꾸기</b> : <span class="point">무이자 앞 문구</span>에 입력합니다. 금액과 <code>(6개월 기준)</code>은 바뀌지 않습니다.</li>
+      <li><b>[자세히 보기] 팝업</b>의 카드사 배너·문구 수정은 모아스튜디오 매뉴얼에서 변경할 수 있습니다.<br>
+        <a href="https://moa-studio.com/manual/bodylab/product_detail/05_interest.html" target="_blank" rel="noopener">https://moa-studio.com/manual/bodylab/product_detail/05_interest.html</a></li>
+    </ul>
+    <div class="note ok"><div>옵션 세트(2개 세트 등)를 선택해도 무이자 금액은 바뀌지 않습니다. 항상 메인 판매가 기준입니다.</div></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title"><span class="num">8</span><h3>무상 AS 안내</h3></div>
+    <ul>
+      <li><span class="point">무상 AS 문구</span>를 입력한 상품에만 무상 AS 줄이 나옵니다.</li>
+      <li>배지 글자를 바꾸려면 <span class="point">무상 AS 라벨</span>을 입력합니다. 라벨만 비워두면 "무상 AS"로 나옵니다.</li>
+      <li>노출하지 않으려면 <b>무상 AS 문구를 비우고</b> 저장합니다.</li>
+    </ul>
+    <div class="note warn"><div>라벨만 비운다고 줄이 사라지지 않습니다. 숨기려면 반드시 <b>문구</b>를 비워주세요.</div></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title"><span class="num">9</span><h3>쿠폰 받기 버튼</h3></div>
+    <ul>
+      <li><span class="point">쿠폰받기 버튼 문구</span>에 입력하면 버튼 글자가 바뀝니다. (예: <code>혜택 쿠폰 받기</code>)</li>
+      <li><span class="point">쿠폰받기 버튼 색상</span>에 색상 코드를 입력하면 버튼 배경색이 바뀝니다.</li>
+      <li>둘 다 비워두면 기본 "쿠폰 받기" / 보라색으로 나옵니다.</li>
+    </ul>
+    <div class="note tip"><div>쿠폰 받기 버튼은 <b>받을 수 있는 쿠폰이 있는 상품·계정에서만</b> 보입니다. 쿠폰이 없거나 이미 받은 계정에서는 문구·색상을 입력해도 버튼이 나오지 않습니다.</div></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title"><span class="num">10</span><h3>글씨 굵게 · 색상 입력 방법</h3></div>
+    <p>문구 칸(무상 AS 라벨·문구, 무이자 앞 문구, 쿠폰받기 버튼 문구)에서는 굵게 할 글자를 아래처럼 감싸면 됩니다.</p>
+    <table>
+      <thead><tr><th style="width:44%">입력</th><th>화면 표시</th></tr></thead>
+      <tbody>
+        <tr><td><code>혜택 **쿠폰** 받기</code></td><td>혜택 <b>쿠폰</b> 받기</td></tr>
+        <tr><td><code>혜택 &lt;b&gt;쿠폰 받기&lt;/b&gt;</code> (<code>&lt;strong&gt;</code>도 가능)</td><td>혜택 <b>쿠폰 받기</b></td></tr>
+        <tr><td><code>[**카드**] 월</code></td><td>[<b>카드</b>] 월</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:14px">색상 칸에는 아래 형식으로 입력합니다.</p>
+    <table>
+      <thead><tr><th style="width:44%">입력</th><th>결과</th></tr></thead>
+      <tbody>
+        <tr><td><code>#e53935</code> 또는 <code>e53935</code></td><td>단색 (<code>#</code> 없이도 가능)</td></tr>
+        <tr><td><code>linear-gradient(90deg,#f00,#00f)</code></td><td>그라데이션</td></tr>
+        <tr><td>잘못된 값 · <code>url()</code></td><td>무시되고 기본 보라색</td></tr>
+      </tbody>
+    </table>
+    <div class="note warn"><div>문구에 큰따옴표(<code>"</code>)는 쓰지 마세요. 문구가 깨질 수 있습니다. <code>&lt;b&gt;</code>, <code>&lt;strong&gt;</code> 외의 HTML 태그는 글자 그대로 표시됩니다.</div></div>
+  </div>
+</section>
+
+<!-- ============ STEP 4 ============ -->
+<section class="part" id="p4">
+  <div class="part-head"><span class="part-no">STEP 4</span><h2>공식판매처 배너 · 문제 해결</h2></div>
+  <p class="part-desc">공식판매처 배너는 상품별 설정이 아니라 배너매니저에서 한 번만 관리합니다.</p>
+
+  <div class="step">
+    <div class="step-title"><span class="num">11</span><h3>공식판매처 배너 (배너매니저)</h3></div>
+    <p>배너매니저 <span class="point">detail-banner</span> 그룹에 등록한 이미지가 상품 이미지 아래에 <b>전 상품 공통</b>으로 노출됩니다.</p>
+    <ul>
+      <li><b>이미지 교체</b> : 그룹의 배너 이미지를 새 파일로 바꾸고 [저장]하면 바로 반영됩니다.</li>
+      <li><b>링크 설정</b> : 링크 URL을 입력하면 클릭 시 이동하고, 비워두면 클릭해도 이동하지 않습니다.</li>
+      <li><b>노출 끄기</b> : 배너를 삭제하거나 숨김 처리하면 배너 영역이 사라집니다.</li>
+    </ul>
+    <div class="note tip"><div>선명하게 보이도록 가로 <b>1200px 이상</b> 이미지를 권장합니다. 해상도가 낮으면 흐릿하게 보일 수 있습니다.</div></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title"><span class="num">12</span><h3>문구나 버튼이 보이지 않을 때</h3></div>
+    <ul>
+      <li>입력 후 <b>[상품수정]</b>을 눌러 저장했는지 확인하고, 쇼핑몰에서 <kbd>Ctrl</kbd> + <kbd>F5</kbd>로 새로고침해주세요. 반영에 1~2분 걸릴 수 있습니다.</li>
+      <li><b>무상 AS 줄</b>이 없다면 <b>무상 AS 문구</b>가 비어 있는지 확인해주세요.</li>
+      <li><b>무이자 줄</b>이 없다면 <b>무이자 노출</b> 칸에 <code>N</code>이 입력되어 있는지 확인해주세요.</li>
+      <li><b>쿠폰 받기 버튼</b>이 없다면 받을 수 있는 쿠폰이 있는 상품·계정인지 확인해주세요.</li>
+      <li>추가항목을 삭제하거나 순서를 바꾼 적이 있다면 모아스튜디오로 문의해주세요.</li>
+    </ul>
+  </div>
+</section>
+
+<p class="foot">본 가이드는 모아스튜디오에서 제공하는 운영 가이드입니다.</p>
+
+</main>
+
+<div id="lb"><img alt=""></div>
+<script>
+(function () {
+  var lb = document.getElementById('lb'), im = lb.querySelector('img');
+  document.querySelectorAll('figure img').forEach(function (i) {
+    i.addEventListener('click', function () { im.src = i.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function () { lb.classList.remove('on'); });
+})();
+</script>
+</body>
+</html>
